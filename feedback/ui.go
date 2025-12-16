@@ -6,7 +6,8 @@ import (
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
-	"github.com/fynelabs/telemetry"
+
+	"github.com/ApptrixAI/telemetry"
 )
 
 type data struct {
