@@ -1,10 +1,13 @@
-module github.com/fynelabs/telemetry
+module github.com/ApptrixAI/telemetry
 
 go 1.19
 
 require fyne.io/fyne/v2 v2.6.1
 
-require github.com/google/uuid v1.6.0
+require (
+	github.com/fynelabs/telemetry v0.0.0-20251210104324-01ae4f8458ad
+	github.com/google/uuid v1.6.0
+)
 
 require (
 	github.com/fredbi/uri v1.1.0 // indirect
