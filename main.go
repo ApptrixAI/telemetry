@@ -94,8 +94,8 @@ func (t *Telemetry) HasUserInfo() bool {
 
 // Event logs a named event to the telemetry server.
 // Event names should be unique to your application for correct counting.
-func (t *Telemetry) Event(name string) {
-	t.send("event?name=%s&session=%s", name, t.session)
+func (t *Telemetry) Event(name, detail string) {
+	t.send("event?name=%s&detail=%s&session=%s", name, url.QueryEscape(detail), t.session)
 }
 
 func (t *Telemetry) Feedback(f Feeling, info string) {

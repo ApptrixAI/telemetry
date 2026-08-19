@@ -1,6 +1,10 @@
 package telemetry
 
-import "github.com/google/uuid"
+import (
+	"net/url"
+
+	"github.com/google/uuid"
+)
 
 type ServerTelemetry struct {
 	*Telemetry
@@ -14,7 +18,7 @@ func InitServer(appID, accessCode string) *ServerTelemetry {
 	return &ServerTelemetry{Telemetry: initTelemetry(appID, "", session, accessCode, false)}
 }
 
-// ClientError reports an error to the telemetry server for the specified user session.
+// UserError reports an error to the telemetry server for the specified user session.
 // It will generate a stack trace starting at the function that called this method.
 // The session should have been started using `ClientSessionStart`.
 func (t *Telemetry) UserError(err error, session string) {
@@ -24,8 +28,8 @@ func (t *Telemetry) UserError(err error, session string) {
 // ClientEvent logs a named event to the telemetry server associated with a client session.
 // Event names should be unique to your application for correct counting.
 // The session should have been started using `ClientSessionStart`.
-func (t *ServerTelemetry) ClientEvent(name, session string) {
-	t.send("event?name=%s&session=%s", name, session)
+func (t *ServerTelemetry) ClientEvent(name, detail, session string) {
+	t.send("event?name=%s&detail=%s&session=%s", name, url.QueryEscape(detail), session)
 }
 
 // ClientUserInfo allows an app to provide a username and/or email to associate with a user.
